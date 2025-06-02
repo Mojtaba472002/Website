@@ -99,7 +99,6 @@ nav a:hover {
     position: relative;
     overflow: hidden;
     transform: rotate(-5deg);
-    animation: morphShape 8s ease-in-out infinite;
     margin: 0 auto;
     box-shadow: 0 8px 30px rgba(0, 67, 255, 0.3);
 }
@@ -111,18 +110,6 @@ nav a:hover {
     border-radius: inherit;
 }
 
-@keyframes morphShape {
-    0% {
-        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-    }
-    50% {
-        border-radius: 45% 55% 52% 48% / 45% 48% 52% 55%;
-    }
-    100% {
-        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-    }
-}
-
 .hero-image-shape::before {
     content: '';
     position: absolute;
@@ -132,16 +119,47 @@ nav a:hover {
     bottom: -10px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: inherit;
-    animation: spinBorder 20s linear infinite;
 }
 
-@keyframes spinBorder {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.shape {
+    position: absolute;
+    border-radius: 10px;
+}
+
+.shape1 {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    top: 20%;
+    left: 20%;
+    transform: rotate(45deg);
+}
+
+.shape2 {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 204, 0, 0.2);
+    top: 60%;
+    right: 20%;
+    transform: rotate(30deg);
+}
+
+.shape3 {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    bottom: 20%;
+    left: 30%;
+    transform: rotate(60deg);
+}
+
+.shape4 {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 204, 0, 0.15);
+    top: 30%;
+    right: 30%;
+    transform: rotate(15deg);
 }
 
 .hello-badge {
@@ -217,64 +235,7 @@ nav a:hover {
     pointer-events: none;
 }
 
-.shape {
-    position: absolute;
-    border-radius: 10px;
-}
-
-.shape1 {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.1);
-    top: 20%;
-    left: 20%;
-    animation: float 6s ease-in-out infinite;
-    transform: rotate(45deg);
-}
-
-.shape2 {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 204, 0, 0.2);
-    top: 60%;
-    right: 20%;
-    animation: float 8s ease-in-out infinite;
-    animation-delay: -2s;
-    transform: rotate(30deg);
-}
-
-.shape3 {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.15);
-    bottom: 20%;
-    left: 30%;
-    animation: float 7s ease-in-out infinite;
-    animation-delay: -1s;
-    transform: rotate(60deg);
-}
-
-.shape4 {
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 204, 0, 0.15);
-    top: 30%;
-    right: 30%;
-    animation: float 9s ease-in-out infinite;
-    animation-delay: -3s;
-    transform: rotate(15deg);
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0) rotate(45deg);
-    }
-    50% {
-        transform: translateY(-20px) rotate(45deg);
-    }
-}
-
-/* Update existing button styles */
+/* Button styles */
 .btn {
     padding: 0.8rem 2rem;
     border: none;
@@ -292,39 +253,6 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.9);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .welcome-text {
-        font-size: 2rem;
-    }
-    
-    .description-text {
-        font-size: 1rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-    }
-    
-    .background-text {
-        font-size: 20vw;
-    }
-
-    .hero-content {
-        flex-direction: column-reverse;
-        text-align: center;
-    }
-
-    .hero-text-content {
-        text-align: center;
-    }
-
-    .hero-image-shape {
-        width: 250px;
-        height: 250px;
-    }
-}
-
 /* Section Styles */
 section {
     padding: 5rem 2rem;
@@ -340,15 +268,18 @@ h2 {
 /* About Section */
 .about-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 350px);
     gap: 2rem;
-    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
+    justify-content: center;
+    align-items: start;
+    max-width: 1200px;
 }
 
 .about-item {
     background: #fff;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -356,6 +287,12 @@ h2 {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
 }
 
 .about-item::before {
@@ -385,6 +322,7 @@ h2 {
     position: relative;
     z-index: 2;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .about-item:hover i, 
@@ -394,10 +332,11 @@ h2 {
 }
 
 .about-item i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #007bff;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     transition: transform 0.3s ease;
+    margin-top: 0.5rem;
 }
 
 .about-item:hover i {
@@ -405,19 +344,24 @@ h2 {
 }
 
 .about-item h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #333;
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
 }
 
 .about-item p {
     color: #666;
-    line-height: 1.6;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    flex-grow: 1;
 }
 
 /* Experience Section */
 .experience-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -490,12 +434,6 @@ h2 {
     color: white;
 }
 
-@media (max-width: 768px) {
-    .experience-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* Works Section */
 .works-grid {
     max-width: 1200px;
@@ -511,7 +449,7 @@ h2 {
 
 .work-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 0 auto;
     max-width: 1200px;
@@ -594,24 +532,10 @@ h2 {
     transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-    .work-items {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-        margin: 0 auto;
-        gap: 1.5rem;
-    }
-
-    .work-category h3 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
-}
-
 /* Skills Section */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -653,22 +577,21 @@ h2 {
 }
 
 .skill-item:nth-child(3) .skill-level {
-    background: #31a8ff; /* Adobe Photoshop blue */
+    background: #31a8ff;
 }
 
 .skill-item:nth-child(4) .skill-level {
-    background: #ff9a00; /* Adobe Illustrator orange */
+    background: #ff9a00;
 }
 
 .skill-item:nth-child(5) .skill-level {
-    background: #a259ff; /* Figma purple */
+    background: #a259ff;
 }
 
 .skill-item:nth-child(6) .skill-level {
-    background: #684d95; /* C# purple */
+    background: #684d95;
 }
 
-/* Add hover effect to skill bars */
 .skill-item:hover .skill-level {
     filter: brightness(1.1);
 }
@@ -766,40 +689,21 @@ select {
     transform: translateY(0);
 }
 
-/* Add hover effects to form elements */
 input:hover, 
 select:hover, 
 textarea:hover {
     border-color: #007bff;
 }
 
-/* Placeholder styles */
 ::placeholder {
     color: #999;
     opacity: 1;
 }
 
-/* Form validation styles */
 input:invalid,
 select:invalid,
 textarea:invalid {
     border-color: #dc3545;
-}
-
-/* Responsive adjustments for contact form */
-@media (max-width: 768px) {
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .form-group {
-        margin-bottom: 0.8rem;
-    }
-
-    .contact-form {
-        padding: 1.5rem;
-    }
 }
 
 /* Overlay Styles */
@@ -820,8 +724,7 @@ textarea:invalid {
     background: white;
     padding: 2rem;
     border-radius: 15px;
-    width: 90%;
-    max-width: 600px;
+    width: 600px;
     position: relative;
 }
 
@@ -904,49 +807,6 @@ textarea:invalid {
     background: #c82333;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem;
-    }
-
-    .hero-content {
-        flex-direction: column-reverse;
-        text-align: center;
-    }
-
-    .hero-text-content {
-        text-align: center;
-    }
-
-    .hero-image-shape {
-        width: 250px;
-        height: 250px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .background-text {
-        font-size: 20vw;
-    }
-
-    .experience-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-}
-
 /* Project Overlay */
 .project-overlay {
     display: none;
@@ -986,22 +846,6 @@ textarea:invalid {
 
 .project-images img:hover {
     transform: scale(1.02);
-}
-
-/* Responsive adjustments for project overlay */
-@media (max-width: 768px) {
-    .project-overlay {
-        padding: 1rem;
-    }
-
-    .project-content {
-        margin: 1rem auto;
-        padding-bottom: 1rem;
-    }
-
-    .project-images {
-        gap: 1rem;
-    }
 }
 
 /* Footer Styles */
@@ -1047,7 +891,6 @@ textarea:invalid {
     transform: scale(1.2);
 }
 
-/* Custom colors for each social media icon */
 .social-icon .fa-facebook,
 .social-icon .fa-github,
 .social-icon .fa-behance,
@@ -1067,17 +910,4 @@ textarea:invalid {
     color: white;
     font-size: 0.9rem;
     opacity: 0.8;
-}
-
-/* Responsive adjustments for footer */
-@media (max-width: 768px) {
-    .social-icons {
-        gap: 1.5rem;
-    }
-
-    .social-icon {
-        font-size: 1.5rem;
-        width: 45px;
-        height: 45px;
-    }
 } 
